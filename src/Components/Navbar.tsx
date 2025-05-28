@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { motion, hover, animate } from 'motion/react'
+import { motion} from 'motion/react'
 import { SocialIcon } from 'react-social-icons'
 import { socialsMockData } from '@/services/socialMockData'
 import { Sun, Moon } from 'lucide-react'
