@@ -3,15 +3,18 @@ import React from 'react'
 import { motion } from "motion/react"
 import { SocialIcon } from 'react-social-icons'
 import { socialsMockData } from '@/services/socialMockData'
+import { Sun, Moon } from "lucide-react";
 import Link from 'next/link'
 
 type Props = {
     toggleDarkMode: () => void;
     darkMode: boolean;
+    toggleLanguage: () => void;
+    language: string;
   };
 
 
-  const Navbar: React.FC<Props> = ({ toggleDarkMode, darkMode }) => {
+  const Navbar: React.FC<Props> = ({ toggleDarkMode, darkMode,toggleLanguage,language }) => {
   return (
     <header className=' sticky top-0 p-5 flex items-start justify-between max-w-full z-20 xl:items-center '>
         {/* bloque izquierdo redes sociales */}
@@ -43,15 +46,22 @@ type Props = {
       >
         <Link href="https://nextjs.org/docs/pages/api-reference/components/link" >
           <div className="uppercase hidden md:inline-flex text-sm text-gray-400">
-            Get In touch
+            {language === "es" ? "Contáctame" : "Get In Touch"}
           </div>
         </Link>
         {/* boton alternar modo oscuro */}
         <button 
           onClick={toggleDarkMode} 
-          className="p-2 border rounded text-sm"
+          className="p-2 rounded text-sm"
         >
-          {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+        {/* boton alternar idioma */}
+        <button 
+          onClick={toggleLanguage} 
+          className="p-2  rounded text-sm"
+        >
+          {language === "es" ? 'Es' : 'En'}
         </button>
       </motion.div>
     </header>
