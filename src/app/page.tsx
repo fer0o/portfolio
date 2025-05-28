@@ -23,21 +23,24 @@ export default function Home () {
     : './backgrounds/white.png'
   return (
     <div
-      className={` h-screen snap-y snap-mandatory overflow-y-hidden overflow-x-hidden z-0 w-full bg-cover bg-center text-${
+      className={`h-screen snap-y snap-mandatory overflow-y-hidden overflow-x-hidden z-0 w-full bg-cover bg-center text-${
         darkMode ? 'white' : 'black'
       }`}
       style={{ backgroundImage: `url(${backgrounds})` }}
     >
       {/* Navbar */}
+      <div className='fixed top-0 left-0 w-full z-50'>
       <Navbar
         toggleDarkMode={toggleDarkMode}
         darkMode={darkMode}
         toggleLanguage={toggleLanguage}
         language={language}
       />
+      </div>
+
       {/* Resto del contenido */}
-      <section className='snap-center p-8'>
-        <Hero />
+      <section className='snap-center flex flex-col items-center justify-center h-screen pt-24 md:pt-0 p-8'>
+        <Hero darkMode={darkMode} />
       </section>
     </div>
   )
