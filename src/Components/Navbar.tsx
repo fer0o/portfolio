@@ -59,7 +59,7 @@ type Props = {
         {/* boton alternar idioma */}
         <button 
           onClick={toggleLanguage} 
-          className="p-2  rounded text-sm"
+          className="p-2  rounded text-sm font-bold"
         >
           {language === "es" ? 'Es' : 'En'}
         </button>
