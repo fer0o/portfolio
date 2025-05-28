@@ -17,8 +17,13 @@ export default function Home() {
     setLanguage(newLanguage);
     console.log(`tu idioma es ${newLanguage}`);
   }
+  //backgrounds
+  const backgrounds = darkMode ? "./backgrounds/dark.png" : "./backgrounds/white.png";
   return (
-    <div className={`${darkMode ? 'bg-black text-white' : 'bg-white text-black'} h-screen`}>
+    <div
+           className={`h-screen w-full bg-cover bg-center text-${darkMode ? 'white' : 'black'}`}
+      style={{ backgroundImage: `url(${backgrounds})` }}
+     >
       {/* Aquí puedes pasar el toggle y el estado al Navbar para mostrar el botón */}
       <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleLanguage={toggleLanguage} language={language} />
       {/* Resto del contenido */}
