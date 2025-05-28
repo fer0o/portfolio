@@ -83,7 +83,7 @@ const Navbar: React.FC<Props> = ({
             onClick={toggleLanguage}
             className='p-2  rounded text-sm font-bold'
           >
-            {language === 'es' ? 'Es' : 'En'}
+            {language === 'es' ? 'Es' : 'En'} 
           </button>
         </motion.div>
       </motion.div>
