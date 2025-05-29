@@ -6,5 +6,5 @@ export const socialsMockData: Socials[] = [
     id: "linkedin",
     url: "https://www.linkedin.com/in/fernando-medellin-cuevas/",
   },
-  { id: "twitch", url: "https://www.twitch.tv/fer0o" },
+  // { id: "twitch", url: "https://www.twitch.tv/fer0o" },
 ];

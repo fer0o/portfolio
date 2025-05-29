@@ -40,19 +40,63 @@ const Hero: React.FC<Props> = ({ darkMode }: Props) => {
           </span>
         </div>
         <div className='grid md:grid-rows-1 grid-cols-2 md:grid-cols-4 gap-2'>
-          <button className='bg-white px-4 md:text-base text-sm md:font-bold'>Experiencia</button>
-          <button className='bg-white px-4 md:text-base text-sm md:font-bold'>Habilidades</button>
-          <button className='bg-white px-4 md:text-base text-sm md:font-bold'>Proyectos</button>
-          <button className='bg-white px-4 md:text-base text-sm md:font-bold'>Contacto</button>
+          <button
+            className={`px-6 py-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
+    ${
+      darkMode
+        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white]'
+        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black]'
+    }`}
+          >
+            Experiencia
+          </button>
+          <button
+            className={`px-6 py-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
+    ${
+      darkMode
+        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white]'
+        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black]'
+    }`}
+          >
+            Experiencia
+          </button>
+          <button
+            className={`px-6 py-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
+    ${
+      darkMode
+        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white]'
+        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black]'
+    }`}
+          >
+            Experiencia
+          </button>
+          <button
+            className={`px-6 py-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
+    ${
+      darkMode
+        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white]'
+        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black]'
+    }`}
+          >
+            Experiencia
+          </button>
         </div>
       </div>
       <div className='flex items-center justify-center h-full md:order-2 order-1 '>
-        <Image
+        {/* <Image
           src={'/Photo/Fer.jpg'}
           alt='Foto de perfil'
           width={400}
           height={500}
           className='object-cover'
+        /> */}
+        <img
+          loading='lazy'
+          src='/Photo/Fer.jpg'
+          alt='Foto de perfil'
+          className='object-cover rounded-md w-64 h-72 md:w-96 md:h-full shadow-lg object-cover'
+          width={400}
+          height={500}
         />
       </div>
     </div>

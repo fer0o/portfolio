@@ -39,7 +39,7 @@ export default function Home () {
       </div>
 
       {/* Resto del contenido */}
-      <section className='snap-center flex flex-col items-center justify-center h-screen pt-24 md:pt-0 p-8'>
+      <section className='snap-center flex flex-col items-center justify-center h-screen p-8'>
         <Hero darkMode={darkMode} />
       </section>
     </div>
