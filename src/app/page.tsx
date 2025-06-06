@@ -29,17 +29,17 @@ export default function Home () {
       style={{ backgroundImage: `url(${backgrounds})` }}
     >
       {/* Navbar */}
-      <div className='fixed top-0 left-0 w-full z-50'>
+      
       <Navbar
         toggleDarkMode={toggleDarkMode}
         darkMode={darkMode}
         toggleLanguage={toggleLanguage}
         language={language}
       />
-      </div>
+    
 
       {/* Resto del contenido */}
-      <section className='snap-center flex flex-col items-center justify-center h-screen p-8'>
+      <section className='snap-center'>
         <Hero darkMode={darkMode} />
       </section>
     </div>
