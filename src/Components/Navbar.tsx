@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
-import { motion} from 'motion/react'
+import { motion } from 'motion/react'
 import { SocialIcon } from 'react-social-icons'
 import { socialsMockData } from '@/services/socialMockData'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Mail } from 'lucide-react'
 import Link from 'next/link'
 
 type Props = {
@@ -26,7 +26,7 @@ const Navbar: React.FC<Props> = ({
         initial={{ x: -500, opacity: 0, scale: 0.5 }}
         animate={{ x: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 1.5 }}
-        className='flex flex-row items-center space-x-2'
+        className='flex flex-row items-center lg:space-x-2'
       >
         {socialsMockData.map(social => (
           <SocialIcon
@@ -44,9 +44,11 @@ const Navbar: React.FC<Props> = ({
         initial={{ x: 500, opacity: 0, scale: 0.5 }}
         animate={{ x: 0, opacity: 1, scale: 1 }}
         transition={{ duration: 1.5 }}
-        className='flex flex-row items-center text-gray-300 cursor-pointer space-x-2 mt-2'
+        className='flex flex-row items-center text-gray-400 cursor-pointer space-x-2 mt-2 px-1'
       >
-        <Link href='https://nextjs.org/docs/pages/api-reference/components/link'>
+        {/* Enlace de contacto */}
+        <Link href='#contact'>
+          {/* Texto visible en desktop */}
           <motion.div
             whileHover={{
               scale: 1.1,
@@ -56,6 +58,18 @@ const Navbar: React.FC<Props> = ({
             className='uppercase hidden md:inline-flex text-sm text-gray-400 font-bold hover:underline'
           >
             {language === 'es' ? 'Contáctame' : 'Get In Touch'}
+          </motion.div>
+
+          {/* Ícono visible solo en mobile */}
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.9 }}
+            className='inline-flex md:hidden'
+          >
+            <Mail className='w-5 h-5 mt-2  text-gray-400 hover:text-yellow-400 transition' />
           </motion.div>
         </Link>
         {/* boton alternar modo oscuro */}
