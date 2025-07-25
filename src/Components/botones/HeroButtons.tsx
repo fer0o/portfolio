@@ -1,13 +1,15 @@
 'use client'
 import React from 'react'
+import { useGlobalContext } from '@/context/GlobalContext'
 
 type Props = {
   label: string
-  darkMode: boolean
   onClick?: () => void
 }
 
-const HeroButton: React.FC<Props> = ({ label, darkMode, onClick }) => {
+const HeroButton: React.FC<Props> = ({ label, onClick }) => {
+  const { darkMode } = useGlobalContext()
+
   const baseClass =
     'p-2 font-semibold rounded-full border transition-all duration-300 ease-in-out text-xs md:text-sm text-wrap'
   const darkStyles =
