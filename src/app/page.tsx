@@ -28,11 +28,11 @@ export default function Home() {
       <Navbar />
 
       {/* Resto del contenido */}
-      <section className=''>
+      <section className='snap-center'>
         <Hero />
       </section>
       {/* seccion About */}
-      <section className=''>
+      <section className='snap-center'>
         <About/>
       </section>
       
