@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
   }
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-2 p-2 rounded-md shadow-lg'>
+    <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-2 p-2'>
       <div className='flex flex-col items-center justify-center space-y-4 h-full md:order-1 order-2 md:px-16 px-8'>
         {/* saludo con el nombre */}
         <div>

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Navbar from '@/Components/Navbar'
 import Hero from '@/Components/Hero'
 import { useGlobalContext } from '@/context/GlobalContext'
+import About from '@/Components/About'
 
 export default function Home() {
   const { darkMode } = useGlobalContext()
@@ -13,7 +14,7 @@ export default function Home() {
 
   return (
     <div
-      className={`h-screen snap-y snap-mandatory overflow-y-hidden overflow-x-hidden z-0 w-full bg-cover bg-center text-${
+      className={`h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 w-full bg-cover bg-center text-${
         darkMode ? 'white' : 'black'
       }`}
       style={{ backgroundImage: `url(${backgrounds})` }}
@@ -27,9 +28,14 @@ export default function Home() {
       <Navbar />
 
       {/* Resto del contenido */}
-      <section className='snap-center'>
+      <section className='snap-center my-16'>
         <Hero />
       </section>
+      {/* seccion About */}
+      <section className='snap-center my-16'>
+        <About/>
+      </section>
+      
     </div>
   )
 }
