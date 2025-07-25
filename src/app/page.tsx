@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Navbar from '@/Components/Navbar'
+import Head from 'next/head'
 import Hero from '@/Components/Hero'
 
 export default function Home () {
@@ -28,15 +29,17 @@ export default function Home () {
       }`}
       style={{ backgroundImage: `url(${backgrounds})` }}
     >
+      {/* Head */}
+      <Head>
+        <title>Fernando Medellin Portafolio</title>
+      </Head>
       {/* Navbar */}
-      
       <Navbar
         toggleDarkMode={toggleDarkMode}
         darkMode={darkMode}
         toggleLanguage={toggleLanguage}
         language={language}
       />
-    
 
       {/* Resto del contenido */}
       <section className='snap-center'>
