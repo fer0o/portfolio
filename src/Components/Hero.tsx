@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import { useTypewriter } from 'react-simple-typewriter'
+import HeroButton from './botones/HeroButtons'
 
 type Props = {
   darkMode?: boolean
 }
-const Hero: React.FC<Props> = ({ darkMode }: Props) => {
+const Hero: React.FC<Props> = ({ darkMode = false }: Props) => {
   const [text] = useTypewriter({
     words: [
       'Web Designer',
@@ -46,50 +47,26 @@ const Hero: React.FC<Props> = ({ darkMode }: Props) => {
         </div>
         {/* grid de los botones */}
         <div className='grid md:grid-rows-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
-          <button
+          <HeroButton
+            label='Experiencia'
+            darkMode={darkMode}
             onClick={handleClickButton}
-            className={`p-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
-    ${
-      darkMode
-        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white] text-wrap text-xs md:text-sm'
-        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black] text-xs md:text-sm text-wrap'
-    }`}
-          >
-            Experiencia
-          </button>
-          <button
+          />
+          <HeroButton
+            label='Proyectos'
+            darkMode={darkMode}
             onClick={handleClickButton}
-            className={`p-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
-    ${
-      darkMode
-        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white] text-xs md:text-sm text-wrap'
-        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black] text-xs md:text-sm text-wrap'
-    }`}
-          >
-            Experiencia
-          </button>
-          <button
+          />
+          <HeroButton
+            label='Sobre mí'
+            darkMode={darkMode}
             onClick={handleClickButton}
-            className={`p-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
-    ${
-      darkMode
-        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white] text-xs md:text-sm text-wrap'
-        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black] text-xs md:text-sm text-wrap'
-    }`}
-          >
-            Experiencia
-          </button>
-          <button
+          />
+          <HeroButton
+            label='Habilidades'
+            darkMode={darkMode}
             onClick={handleClickButton}
-            className={`p-2 font-semibold rounded-full border transition-all duration-300 ease-in-out
-    ${
-      darkMode
-        ? 'bg-white text-black border-black shadow-sky-500 hover:shadow-[2px_5px_0_0_white] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_white] text-xs md:text-sm text-wrap'
-        : 'bg-white text-black border-black shadow-black hover:shadow-[2px_5px_0_0_black] hover:-translate-y-1 hover:-translate-x-0.5 active:translate-y-0.5 active:translate-x-0.5 active:shadow-[0_0_0_0_black] text-xs md:text-sm text-wrap'
-    }`}
-          >
-            Experiencia
-          </button>
+          />
         </div>
       </div>
       <div className='flex items-center justify-center h-full md:order-2 order-1 '>
