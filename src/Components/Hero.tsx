@@ -52,10 +52,10 @@ const Hero: React.FC = () => {
 
         {/* grid de los botones */}
         <div className='grid md:grid-rows-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
-          <HeroButton label='Experiencia' darkMode={darkMode} onClick={handleClickButton} />
-          <HeroButton label='Proyectos' darkMode={darkMode} onClick={handleClickButton} />
-          <HeroButton label='Sobre mí' darkMode={darkMode} onClick={handleClickButton} />
-          <HeroButton label='Habilidades' darkMode={darkMode} onClick={handleClickButton} />
+          <HeroButton label='Experiencia' onClick={handleClickButton} />
+          <HeroButton label='Proyectos' onClick={handleClickButton} />
+          <HeroButton label='Sobre mí' onClick={handleClickButton} />
+          <HeroButton label='Habilidades' onClick={handleClickButton} />
         </div>
       </div>
 
