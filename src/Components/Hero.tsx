@@ -4,25 +4,24 @@ import React from 'react'
 import { useTypewriter } from 'react-simple-typewriter'
 import HeroButton from './botones/HeroButtons'
 import { useGlobalContext } from '@/context/GlobalContext'
+import { heroTextMockData } from '@/services/heroTextMockData'
 
 const Hero: React.FC = () => {
-  const { darkMode } = useGlobalContext()
+  const { darkMode, language } = useGlobalContext()
+  // Obtener los datos del hero según el idioma
+  const { greeting, typewriterText, buttons } = heroTextMockData[language as keyof typeof heroTextMockData]
 
   const [text] = useTypewriter({
-    words: [
-      'Web Designer',
-      'Working to convert me in Fullstack',
-      'Eat, Sleep, Code, Repeat!',
-      'Learning React'
-    ],
+    words: 
+      typewriterText,
     loop: true,
     delaySpeed: 3000,
     typeSpeed: 80,
     deleteSpeed: 80
   })
 
-  const handleClickButton = () => {
-    console.log(`Button clicked!`)
+  const handleClickButton = (label: string) => {
+    console.log(`Button clicked: ${label}`)
   }
 
   return (
@@ -35,7 +34,7 @@ const Hero: React.FC = () => {
               darkMode ? 'text-yellow-400' : 'text-blue-800'
             }`}
           >
-            Hola Soy Fernando Medellin
+            {greeting}
           </h1>
         </div>
 
@@ -52,10 +51,13 @@ const Hero: React.FC = () => {
 
         {/* grid de los botones */}
         <div className='grid md:grid-rows-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
-          <HeroButton label='Experiencia' onClick={handleClickButton} />
-          <HeroButton label='Proyectos' onClick={handleClickButton} />
-          <HeroButton label='Sobre mí' onClick={handleClickButton} />
-          <HeroButton label='Habilidades' onClick={handleClickButton} />
+          {buttons.map((label: string) => (
+            <HeroButton
+              key={label}
+              label={label}
+              onClick={() => handleClickButton(label)}
+            />
+          ))}
         </div>
       </div>
 
