@@ -2,14 +2,14 @@
 import Image from 'next/image'
 import React from 'react'
 import { useTypewriter } from 'react-simple-typewriter'
-import HeroButton from './botones/HeroButtons'
+import Button from './botones/Button'
 import { useGlobalContext } from '@/context/GlobalContext'
 import { heroTextMockData } from '@/services/heroTextMockData'
 
 const Hero: React.FC = () => {
   const { darkMode, language } = useGlobalContext()
   // Obtener los datos del hero según el idioma
-  const { greeting, typewriterText, buttons } = heroTextMockData[language as keyof typeof heroTextMockData]
+  const { greeting, typewriterText, buttons } = heroTextMockData[language]
 
   const [text] = useTypewriter({
     words: 
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
         {/* grid de los botones */}
         <div className='grid md:grid-rows-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
           {buttons.map((label: string) => (
-            <HeroButton
+            <Button
               key={label}
               label={label}
               onClick={() => handleClickButton(label)}

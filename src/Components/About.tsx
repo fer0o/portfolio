@@ -7,8 +7,7 @@ import { aboutTextMockData } from '@/services/aboutTextMockData'
 
 const About: React.FC = () => {
   const { language, darkMode } = useGlobalContext()
-  const { title, paragraphs } =
-    aboutTextMockData[language as keyof typeof aboutTextMockData]
+  const { title, paragraphs } = aboutTextMockData[language]
 
   return (
     <motion.section

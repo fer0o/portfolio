@@ -6,6 +6,7 @@ import { socialsMockData } from '@/services/socialMockData'
 import { Sun, Moon, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useGlobalContext } from '@/context/GlobalContext'
+import Button from './botones/Button'
 
 const Navbar: React.FC = () => {
   const {
@@ -16,80 +17,95 @@ const Navbar: React.FC = () => {
   } = useGlobalContext()
 
   return (
-    <header className='sticky top-0 p-5 flex items-start justify-between max-w-full z-20 xl:items-center'>
-      {/* bloque izquierdo redes sociales */}
-      <motion.div
-        initial={{ x: -500, opacity: 0, scale: 0.5 }}
-        animate={{ x: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5 }}
-        className='flex flex-row items-center lg:space-x-2'
-      >
-        {socialsMockData.map(social => (
-          <SocialIcon
-            key={social.id}
-            url={social.url}
-            fgColor='gray'
-            bgColor='transparent'
-            target='_blank'
-          />
-        ))}
-      </motion.div>
-
-      {/* bloque derecho */}
-      <motion.div
-        initial={{ x: 500, opacity: 0, scale: 0.5 }}
-        animate={{ x: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5 }}
-        className='flex flex-row items-center text-gray-400 cursor-pointer space-x-2 mt-2 px-1'
-      >
-        {/* Enlace de contacto */}
-        <Link href='#contact'>
-          <motion.div
-            whileHover={{ scale: 1.1, transition: { duration: 1 } }}
-            whileTap={{ scale: 0.9 }}
-            className='uppercase hidden md:inline-flex text-sm text-gray-400 font-bold hover:underline'
-          >
-            {language === 'es' ? 'Contáctame' : 'Get In Touch'}
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.2, transition: { duration: 0.3 } }}
-            whileTap={{ scale: 0.9 }}
-            className='inline-flex md:hidden'
-          >
-            <Mail className='w-5 h-5 mt-2 text-gray-400 hover:text-yellow-400 transition' />
-          </motion.div>
-        </Link>
-
-        {/* botón modo oscuro */}
+    <header
+      className={`sticky top-0 z-30 h-14 md:h-16 w-full px-3 md:px-5 border-b backdrop-blur-sm ${
+        darkMode
+          ? 'bg-black/45 border-gray-700/70'
+          : 'bg-white/85 border-gray-200'
+      }`}
+    >
+      <div className='mx-auto max-w-6xl h-full flex items-center justify-between gap-2'>
+        {/* bloque izquierdo redes sociales */}
         <motion.div
-          whileTap={{ scale: 1.1 }}
-          animate={{
-            rotate: darkMode ? 360 : 0,
-            transition: { duration: 0.5 }
-          }}
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className='flex items-center gap-1 md:gap-2 shrink-0'
         >
-          <button onClick={toggleDarkMode} className='p-2 rounded text-sm'>
-            {darkMode ? <Sun size={22} /> : <Moon size={22} />}
-          </button>
+          {socialsMockData.map(social => (
+            <SocialIcon
+              key={social.id}
+              url={social.url}
+              fgColor='gray'
+              bgColor='transparent'
+              target='_blank'
+              className='!h-8 !w-8 md:!h-10 md:!w-10'
+            />
+          ))}
         </motion.div>
 
-        {/* botón idioma */}
+        {/* bloque derecho */}
         <motion.div
-          whileTap={{ scale: 1.1 }}
-          animate={{
-            rotate: language === 'es' ? 360 : 0,
-            transition: { duration: 0.5 }
-          }}
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 }}
+          className='flex items-center gap-1 md:gap-2 shrink-0'
         >
-          <button
-            onClick={toggleLanguage}
-            className='p-2 rounded text-sm font-bold'
+          {/* Enlace de contacto */}
+          <Link href='#contact' className='shrink-0'>
+            <motion.div
+              whileTap={{ scale: 0.95 }}
+              className='hidden md:inline-flex uppercase text-sm text-gray-400 font-bold hover:underline'
+            >
+              {language === 'es' ? 'Contáctame' : 'Get In Touch'}
+            </motion.div>
+            <motion.div
+              whileTap={{ scale: 0.92 }}
+              className={`inline-flex md:hidden h-9 w-9 items-center justify-center rounded-md border ${
+                darkMode ? 'border-gray-600' : 'border-gray-300'
+              }`}
+            >
+              <Mail className='h-4 w-4 text-gray-400' />
+            </motion.div>
+          </Link>
+
+          {/* botón modo oscuro */}
+          <motion.div
+            whileTap={{ scale: 0.95 }}
+            animate={{
+              rotate: darkMode ? 360 : 0,
+              transition: { duration: 0.45 }
+            }}
           >
-            {language === 'es' ? 'Es' : 'En'}
-          </button>
+            <Button
+              type='button'
+              onClick={toggleDarkMode}
+              aria-label={language === 'es' ? 'Cambiar tema' : 'Toggle theme'}
+              size='icon'
+            >
+              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </Button>
+          </motion.div>
+
+          {/* botón idioma */}
+          <motion.div
+            whileTap={{ scale: 0.95 }}
+            animate={{
+              rotate: language === 'es' ? 360 : 0,
+              transition: { duration: 0.45 }
+            }}
+          >
+            <Button
+              type='button'
+              onClick={toggleLanguage}
+              aria-label={language === 'es' ? 'Cambiar idioma' : 'Change language'}
+              size='icon'
+            >
+              {language === 'es' ? 'Es' : 'En'}
+            </Button>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </header>
   )
 }

@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+:root {
+  --navbar-height: 56px;
+  --section-offset: 20px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --navbar-height: 64px;
+    --section-offset: 24px;
+  }
+}
+
+.page-scroll {
+  scroll-padding-top: calc(var(--navbar-height) + var(--section-offset));
+}
+
+.page-section {
+  scroll-margin-top: calc(var(--navbar-height) + var(--section-offset));
+}
