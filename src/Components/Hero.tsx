@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
       normalizedLabel.includes('skills') ||
       normalizedLabel.includes('habilidades')
     ) {
-      scrollToSection('experience')
+      scrollToSection('skills')
     }
   }
 

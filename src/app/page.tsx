@@ -4,6 +4,7 @@ import Hero from '@/Components/Hero'
 import { useGlobalContext } from '@/context/GlobalContext'
 import About from '@/Components/About'
 import Experience from '@/Components/Experience'
+import Skills from '@/Components/Skills'
 
 export default function Home() {
   const { darkMode, language } = useGlobalContext()
@@ -32,6 +33,10 @@ export default function Home() {
       {/* seccion About */}
       <section className={centeredSectionFrameClass}>
         <About/>
+      </section>
+      {/* seccion Skills */}
+      <section className={sectionFrameClass}>
+        <Skills />
       </section>
       {/* seccion Experiencia */}
       <section className={sectionFrameClass}>
