@@ -8,7 +8,7 @@ import Experience from '@/Components/Experience'
 export default function Home() {
   const { darkMode, language } = useGlobalContext()
   const sectionFrameClass =
-    'page-section snap-start my-3 sm:my-4 md:my-0 min-h-[calc(100vh-var(--navbar-height)-var(--section-offset))] min-h-[calc(100dvh-var(--navbar-height)-var(--section-offset))]'
+    'page-section snap-start min-h-[calc(100vh-var(--navbar-height))] min-h-[calc(100dvh-var(--navbar-height))]'
   const centeredSectionFrameClass = `${sectionFrameClass} flex items-center`
 
   const backgrounds = darkMode
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div
-      className={`page-scroll h-screen  snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 w-full bg-cover bg-center ${
+      className={`page-scroll h-screen h-dvh snap-y snap-proximity md:snap-mandatory overflow-y-scroll overflow-x-hidden z-0 w-full bg-cover bg-center ${
         darkMode ? 'text-white' : 'text-black'
       }`}
       style={{ backgroundImage: `url(${backgrounds})` }}

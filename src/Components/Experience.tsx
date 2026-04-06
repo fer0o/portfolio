@@ -54,6 +54,22 @@ const Experience: React.FC = () => {
     }
   }, [selectedItem])
 
+  useEffect(() => {
+    const handleViewChange = (event: Event) => {
+      const customEvent = event as CustomEvent<{ view?: ExperienceView }>
+      const nextView = customEvent.detail?.view
+
+      if (nextView === 'work' || nextView === 'projects') {
+        setActiveView(nextView)
+      }
+    }
+
+    window.addEventListener('experience:view-change', handleViewChange)
+    return () => {
+      window.removeEventListener('experience:view-change', handleViewChange)
+    }
+  }, [])
+
   const updateScrollState = useCallback(() => {
     const container = scrollContainerRef.current
     if (!container) return

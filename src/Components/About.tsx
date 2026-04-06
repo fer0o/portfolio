@@ -13,7 +13,7 @@ const About: React.FC = () => {
     <motion.section
       id='about'
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className='w-full flex flex-col h-full text-center md:text-left px-4 sm:px-6 md:px-12 lg:px-20 justify-center items-center'
     >
@@ -29,7 +29,7 @@ const About: React.FC = () => {
         {/* Imagen con animación */}
         <motion.div
           initial={{ x: -200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.2 }}
           className='flex justify-center items-center'
         >

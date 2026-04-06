@@ -20,8 +20,55 @@ const Hero: React.FC = () => {
     deleteSpeed: 80
   })
 
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id)
+    if (!section) return
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   const handleClickButton = (label: string) => {
-    console.log(`Button clicked: ${label}`)
+    const normalizedLabel = label
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+
+    if (
+      normalizedLabel.includes('experience') ||
+      normalizedLabel.includes('experiencia')
+    ) {
+      window.dispatchEvent(
+        new CustomEvent('experience:view-change', {
+          detail: { view: 'work' }
+        })
+      )
+      scrollToSection('experience')
+      return
+    }
+
+    if (
+      normalizedLabel.includes('projects') ||
+      normalizedLabel.includes('proyectos')
+    ) {
+      window.dispatchEvent(
+        new CustomEvent('experience:view-change', {
+          detail: { view: 'projects' }
+        })
+      )
+      scrollToSection('experience')
+      return
+    }
+
+    if (normalizedLabel.includes('about') || normalizedLabel.includes('sobre')) {
+      scrollToSection('about')
+      return
+    }
+
+    if (
+      normalizedLabel.includes('skills') ||
+      normalizedLabel.includes('habilidades')
+    ) {
+      scrollToSection('experience')
+    }
   }
 
   return (
@@ -50,12 +97,13 @@ const Hero: React.FC = () => {
         </div>
 
         {/* grid de los botones */}
-        <div className='w-full max-w-[24rem] grid md:grid-rows-1 grid-cols-2 max-[360px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
+        <div className='w-full max-w-[24rem] sm:max-w-[26rem] md:max-w-[34rem] lg:max-w-none grid md:grid-rows-1 grid-cols-2 max-[360px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3'>
           {buttons.map((label: string) => (
             <Button
               key={label}
               label={label}
               fullWidth
+              className='text-sm sm:text-base py-2.5 md:py-3'
               onClick={() => handleClickButton(label)}
             />
           ))}
