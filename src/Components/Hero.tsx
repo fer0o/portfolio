@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { useTypewriter } from 'react-simple-typewriter'
-import Button from './botones/Button'
+import Button, { getButtonClassName } from './botones/Button'
 import { useGlobalContext } from '@/context/GlobalContext'
 import { heroTextMockData } from '@/services/heroTextMockData'
 
@@ -10,6 +10,8 @@ const Hero: React.FC = () => {
   const { darkMode, language } = useGlobalContext()
   // Obtener los datos del hero según el idioma
   const { greeting, typewriterText, buttons } = heroTextMockData[language]
+  const viewCvLabel = language === 'es' ? 'Ver CV' : 'View CV'
+  const cvHref = language === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf'
 
   const [text] = useTypewriter({
     words: 
@@ -108,6 +110,17 @@ const Hero: React.FC = () => {
             />
           ))}
         </div>
+
+        <a
+          href={cvHref}
+          target='_blank'
+          rel='noreferrer'
+          className={getButtonClassName(darkMode, {
+            className: 'text-sm sm:text-base py-2.5 md:py-3'
+          })}
+        >
+          {viewCvLabel}
+        </a>
       </div>
 
       <div className='flex items-center justify-center h-full md:order-2 order-1'>

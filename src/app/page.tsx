@@ -5,9 +5,11 @@ import { useGlobalContext } from '@/context/GlobalContext'
 import About from '@/Components/About'
 import Experience from '@/Components/Experience'
 import Skills from '@/Components/Skills'
+import Contact from '@/Components/Contact'
+import Footer from '@/Components/Footer'
 
 export default function Home() {
-  const { darkMode, language } = useGlobalContext()
+  const { darkMode } = useGlobalContext()
 
   const backgrounds = darkMode
     ? '/backgrounds/dark.png'
@@ -44,23 +46,10 @@ export default function Home() {
         id='contact'
         className='page-section min-h-[55vh] px-6 md:px-12 lg:px-20 py-14 md:py-20 flex items-center justify-center'
       >
-        <div className='text-center space-y-4'>
-          <h3 className='text-2xl md:text-3xl font-semibold'>
-            {language === 'es' ? 'Contacto' : 'Contact'}
-          </h3>
-          <p className={darkMode ? 'text-gray-200' : 'text-gray-700'}>
-            {language === 'es'
-              ? 'Puedes escribirme directamente por correo.'
-              : 'You can reach me directly by email.'}
-          </p>
-          <a
-            href='mailto:fernandomedellin.dev@gmail.com'
-            className='underline decoration-blue-500 font-semibold'
-          >
-            fernandomedellin.dev@gmail.com
-          </a>
-        </div>
+        <Contact />
       </section>
+
+      <Footer />
     </div>
   )
 }
