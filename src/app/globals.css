@@ -3,17 +3,18 @@
 
 :root {
   --navbar-height: 56px;
-  --section-offset: 0px;
+  --section-offset: 12px;
 }
 
 @media (min-width: 768px) {
   :root {
     --navbar-height: 64px;
-    --section-offset: 0px;
+    --section-offset: 16px;
   }
 }
 
-.page-scroll {
+html {
+  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--navbar-height) + var(--section-offset));
 }
 

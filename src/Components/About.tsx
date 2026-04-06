@@ -15,7 +15,7 @@ const About: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='w-full flex flex-col h-full text-center md:text-left px-4 sm:px-6 md:px-12 lg:px-20 justify-center items-center'
+      className='w-full flex flex-col text-center md:text-left px-4 sm:px-6 md:px-12 lg:px-20 items-center'
     >
       <h2
         className={`uppercase tracking-[6px] sm:tracking-[10px] text-2xl font-semibold mb-6 sm:mb-8 transition-colors duration-500 ${

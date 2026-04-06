@@ -42,6 +42,13 @@ const Experience: React.FC = () => {
     language === 'es' ? 'Certificado' : 'Certificate'
   const prevLabel = language === 'es' ? 'Anterior' : 'Previous'
   const nextLabel = language === 'es' ? 'Siguiente' : 'Next'
+  const viewCvLabel = language === 'es' ? 'Ver CV' : 'View CV'
+  const downloadCvLabel = language === 'es' ? 'Descargar CV' : 'Download CV'
+  const cvHref = language === 'es' ? '/cv/cv-es.pdf' : '/cv/cv-en.pdf'
+  const cvFileName =
+    language === 'es'
+      ? 'Fernando-Medellin-CV-ES.pdf'
+      : 'Fernando-Medellin-CV-EN.pdf'
 
   useEffect(() => {
     if (!selectedItem) return
@@ -196,7 +203,7 @@ const Experience: React.FC = () => {
           </p>
         </div>
 
-        <div className='flex flex-wrap justify-center gap-3'>
+        <div className='flex flex-wrap md:flex-nowrap items-center justify-center gap-3'>
           <Button
             onClick={() => setActiveView('work')}
             active={activeView === 'work'}
@@ -207,9 +214,24 @@ const Experience: React.FC = () => {
             active={activeView === 'projects'}
             label={projectsLabel}
           />
+          <a
+            href={cvHref}
+            target='_blank'
+            rel='noreferrer'
+            className={getButtonClassName(darkMode, { size: 'sm' })}
+          >
+            {viewCvLabel}
+          </a>
+          <a
+            href={cvHref}
+            download={cvFileName}
+            className={getButtonClassName(darkMode, { size: 'sm' })}
+          >
+            {downloadCvLabel}
+          </a>
         </div>
 
-        <div className='flex justify-center sm:justify-end gap-2'>
+        <div className='flex justify-center gap-2'>
           <Button
             onClick={handlePrev}
             label={prevLabel}
