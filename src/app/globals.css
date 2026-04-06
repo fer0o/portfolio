@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "tailwind-scrollbar";
 
 :root {
   --navbar-height: 56px;
@@ -18,4 +19,13 @@
 
 .page-section {
   scroll-margin-top: calc(var(--navbar-height) + var(--section-offset));
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

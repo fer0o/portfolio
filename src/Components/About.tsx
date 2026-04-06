@@ -15,17 +15,17 @@ const About: React.FC = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='flex flex-col h-screen text-center md:text-left px-6 md:px-12 lg:px-20 justify-center items-center'
+      className='w-full flex flex-col h-full text-center md:text-left px-4 sm:px-6 md:px-12 lg:px-20 justify-center items-center'
     >
       <h2
-        className={`uppercase tracking-[10px] text-2xl font-semibold mt-12 mb-8 transition-colors duration-500 ${
+        className={`uppercase tracking-[6px] sm:tracking-[10px] text-2xl font-semibold mb-6 sm:mb-8 transition-colors duration-500 ${
           darkMode ? 'text-gray-400' : 'text-black'
         }`}
       >
         {title}
       </h2>
 
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8  items-center'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center w-full max-w-6xl'>
         {/* Imagen con animación */}
         <motion.div
           initial={{ x: -200, opacity: 0 }}
@@ -38,16 +38,16 @@ const About: React.FC = () => {
             alt='Foto de perfil'
             width={400}
             height={500}
-            className='rounded-full md:rounded-lg w-48 h-48 md:w-64 md:h-96 lg:w-[400px] lg:h-[500px] object-cover shadow-lg'
+            className='rounded-full md:rounded-lg w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-96 lg:w-[400px] lg:h-[500px] object-cover shadow-lg'
             priority={false}
             loading='lazy'
           />
         </motion.div>
 
         {/* Texto */}
-        <div className='space-y-3.5 md:space-y-5'>
+        <div className='space-y-3.5 md:space-y-5 max-w-md md:max-w-none mx-auto'>
           <h4
-            className={`text-xl md:text-3xl font-semibold transition-colors duration-500 ${
+            className={`text-lg sm:text-xl md:text-3xl font-semibold transition-colors duration-500 ${
               darkMode ? 'text-gray-400' : 'text-black'
             }`}
           >
@@ -68,7 +68,7 @@ const About: React.FC = () => {
           {paragraphs.map((p, i) => (
             <p
               key={i}
-              className={`text-sm md:text-base transition-colors duration-500 ${
+              className={`text-xs sm:text-sm md:text-base transition-colors duration-500 ${
                 darkMode ? 'text-gray-200' : 'text-gray-700'
               }`}
             >

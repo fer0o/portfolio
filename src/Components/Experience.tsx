@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useGlobalContext } from '@/context/GlobalContext'
 import { ExperienceItem, ExperienceView } from '@/models/experience'
@@ -11,6 +11,9 @@ const Experience: React.FC = () => {
   const [activeView, setActiveView] = useState<ExperienceView>('work')
   const [selectedItem, setSelectedItem] = useState<ExperienceItem | null>(null)
   const [showDetails, setShowDetails] = useState(false)
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null)
 
   const closeModal = () => {
     setSelectedItem(null)
@@ -37,16 +40,136 @@ const Experience: React.FC = () => {
     language === 'es' ? 'Preview del certificado' : 'Certificate preview'
   const certificateSectionLabel =
     language === 'es' ? 'Certificado' : 'Certificate'
+  const prevLabel = language === 'es' ? 'Anterior' : 'Previous'
+  const nextLabel = language === 'es' ? 'Siguiente' : 'Next'
+
+  useEffect(() => {
+    if (!selectedItem) return
+
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [selectedItem])
+
+  const updateScrollState = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth
+    setCanScrollPrev(container.scrollLeft > 4)
+    setCanScrollNext(container.scrollLeft < maxScrollLeft - 4)
+  }, [])
+
+  const getScrollStep = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container) return 320
+
+    const firstSlide = container.querySelector(
+      '[data-experience-slide]'
+    ) as HTMLElement | null
+
+    if (!firstSlide) return 320
+
+    return firstSlide.getBoundingClientRect().width + 20
+  }, [])
+
+  const handlePrev = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    container.scrollBy({ left: -getScrollStep(), behavior: 'smooth' })
+  }, [getScrollStep])
+
+  const handleNext = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    container.scrollBy({ left: getScrollStep(), behavior: 'smooth' })
+  }, [getScrollStep])
+
+  useEffect(() => {
+    updateScrollState()
+    const handleResize = () => updateScrollState()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [updateScrollState, activeView])
+
+  const renderCard = (item: ExperienceItem) => (
+    <button
+      key={item.id}
+      onClick={() => {
+        setSelectedItem(item)
+        setShowDetails(false)
+      }}
+      className={`relative hover:z-10 h-[390px] sm:h-[420px] md:h-[440px] w-full text-left rounded-lg border p-4 sm:p-5 shadow-lg transition hover:-translate-y-1 flex flex-col ${
+        darkMode
+          ? 'bg-black/40 border-gray-600'
+          : 'bg-white/90 border-gray-200'
+      }`}
+    >
+      {item.imageUrl && (
+        <div className='mb-4 flex justify-center'>
+          <div
+            className={`h-14 w-14 rounded-xl border overflow-hidden flex items-center justify-center ${
+              darkMode ? 'border-gray-600 bg-white/90' : 'border-gray-300 bg-white'
+            }`}
+          >
+            <Image
+              src={item.imageUrl}
+              alt={item.title[language]}
+              width={56}
+              height={56}
+              className='h-full w-full object-contain p-2'
+            />
+          </div>
+        </div>
+      )}
+      <p className='text-sm text-gray-400'>{item.period[language]}</p>
+      <h3 className='text-lg font-bold mt-1'>{item.title[language]}</h3>
+      <p className='text-sm mt-1 text-blue-500 font-semibold'>
+        {item.subtitle[language]}
+      </p>
+      <p
+        className={`text-sm mt-3 max-h-24 overflow-hidden ${
+          darkMode ? 'text-gray-200' : 'text-gray-700'
+        }`}
+      >
+        {item.summary[language]}
+      </p>
+      <div className='mt-auto pt-4'>
+        <div className='flex flex-wrap gap-2 max-h-20 overflow-y-auto no-scrollbar pr-1'>
+          {item.stack.map(tech => (
+            <span
+              key={tech}
+              className={`text-xs px-2 py-1 rounded-full border ${
+                darkMode
+                  ? 'border-gray-500 text-gray-200'
+                  : 'border-gray-300 text-gray-700'
+              }`}
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </button>
+  )
 
   return (
     <section
       id='experience'
-      className='snap-center min-h-screen px-6 md:px-12 lg:px-20 py-16'
+      className='w-full px-4 sm:px-6 md:px-12 lg:px-20 py-12 md:py-16'
     >
       <div className='max-w-6xl mx-auto space-y-8'>
         <div className='text-center space-y-2'>
           <h2
-            className={`uppercase tracking-[10px] text-2xl font-semibold ${
+            className={`uppercase tracking-[6px] sm:tracking-[10px] text-2xl font-semibold ${
               darkMode ? 'text-gray-300' : 'text-gray-700'
             }`}
           >
@@ -57,7 +180,7 @@ const Experience: React.FC = () => {
           </p>
         </div>
 
-        <div className='flex justify-center gap-3'>
+        <div className='flex flex-wrap justify-center gap-3'>
           <Button
             onClick={() => setActiveView('work')}
             active={activeView === 'work'}
@@ -70,71 +193,53 @@ const Experience: React.FC = () => {
           />
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-          {filteredItems.map(item => (
-            <button
-              key={item.id}
-              onClick={() => {
-                setSelectedItem(item)
-                setShowDetails(false)
-              }}
-              className={`text-left rounded-lg border p-5 shadow-lg transition hover:-translate-y-1 ${
-                darkMode
-                  ? 'bg-black/40 border-gray-600'
-                  : 'bg-white/90 border-gray-200'
-              }`}
-            >
-              {item.imageUrl && (
-                <div className='mb-4 flex justify-center'>
-                  <div
-                    className={`h-14 w-14 rounded-xl border overflow-hidden flex items-center justify-center ${
-                      darkMode ? 'border-gray-600 bg-white/90' : 'border-gray-300 bg-white'
-                    }`}
-                  >
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title[language]}
-                      width={56}
-                      height={56}
-                      className='h-full w-full object-contain p-2'
-                    />
-                  </div>
-                </div>
-              )}
-              <p className='text-sm text-gray-400'>{item.period[language]}</p>
-              <h3 className='text-lg font-bold mt-1'>{item.title[language]}</h3>
-              <p className='text-sm mt-1 text-blue-500 font-semibold'>
-                {item.subtitle[language]}
-              </p>
-              <p className={`text-sm mt-3 ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-                {item.summary[language]}
-              </p>
-              <div className='flex flex-wrap gap-2 mt-4'>
-                {item.stack.map(tech => (
-                  <span
-                    key={tech}
-                    className={`text-xs px-2 py-1 rounded-full border ${
-                      darkMode
-                        ? 'border-gray-500 text-gray-200'
-                        : 'border-gray-300 text-gray-700'
-                    }`}
-                  >
-                    {tech}
-                  </span>
-                ))}
+        <div className='flex justify-center sm:justify-end gap-2'>
+          <Button
+            onClick={handlePrev}
+            label={prevLabel}
+            size='sm'
+            disabled={!canScrollPrev}
+            className='disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0'
+          />
+          <Button
+            onClick={handleNext}
+            label={nextLabel}
+            size='sm'
+            disabled={!canScrollNext}
+            className='disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0'
+          />
+        </div>
+
+        <div
+          ref={scrollContainerRef}
+          onScroll={updateScrollState}
+          className={`overflow-x-auto pb-2 scrollbar-thin scrollbar-track-transparent ${
+            darkMode
+              ? 'scrollbar-thumb-zinc-600'
+              : 'scrollbar-thumb-gray-300'
+          } overflow-y-visible pt-2 -mx-4 px-4 sm:mx-0 sm:px-0`}
+        >
+          <div className='flex gap-5 pr-6 snap-x snap-mandatory'>
+            {filteredItems.map(item => (
+              <div
+                key={item.id}
+                data-experience-slide
+                className='w-[16rem] min-[380px]:w-[18rem] sm:w-[320px] md:w-[340px] shrink-0 snap-start py-1'
+              >
+                {renderCard(item)}
               </div>
-            </button>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {selectedItem && (
         <div
-          className='fixed inset-0 z-50 bg-black/70 px-4 flex items-center justify-center'
+          className='fixed inset-0 z-50 bg-black/70 px-4 py-4 flex items-center justify-center'
           onClick={closeModal}
         >
           <div
-            className={`w-full max-w-2xl rounded-xl border p-6 relative ${
+            className={`w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-xl border p-4 sm:p-6 relative ${
               darkMode ? 'bg-zinc-900 border-zinc-700' : 'bg-white border-gray-200'
             }`}
             role='dialog'
@@ -201,7 +306,7 @@ const Experience: React.FC = () => {
               {selectedItem.certificateThumbUrl &&
                 selectedItem.certificatePreviewUrl && (
                   <div
-                    className={`rounded-lg border p-3 flex items-center justify-between gap-3 ${
+                    className={`rounded-lg border p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ${
                       darkMode ? 'border-gray-600 bg-black/30' : 'border-gray-200 bg-gray-50'
                     }`}
                   >

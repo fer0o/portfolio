@@ -7,6 +7,9 @@ import Experience from '@/Components/Experience'
 
 export default function Home() {
   const { darkMode, language } = useGlobalContext()
+  const sectionFrameClass =
+    'page-section snap-start my-3 sm:my-4 md:my-0 min-h-[calc(100vh-var(--navbar-height)-var(--section-offset))] min-h-[calc(100dvh-var(--navbar-height)-var(--section-offset))]'
+  const centeredSectionFrameClass = `${sectionFrameClass} flex items-center`
 
   const backgrounds = darkMode
     ? '/backgrounds/dark.png'
@@ -14,7 +17,7 @@ export default function Home() {
 
   return (
     <div
-      className={`page-scroll h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 w-full bg-cover bg-center ${
+      className={`page-scroll h-screen  snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 w-full bg-cover bg-center ${
         darkMode ? 'text-white' : 'text-black'
       }`}
       style={{ backgroundImage: `url(${backgrounds})` }}
@@ -23,21 +26,21 @@ export default function Home() {
       <Navbar />
 
       {/* Resto del contenido */}
-      <section className='page-section snap-start my-4 md:my-0'>
+      <section className={centeredSectionFrameClass}>
         <Hero />
       </section>
       {/* seccion About */}
-      <section className='page-section snap-start my-4 md:my-0'>
+      <section className={centeredSectionFrameClass}>
         <About/>
       </section>
       {/* seccion Experiencia */}
-      <section className='page-section snap-start my-4 md:my-0'>
+      <section className={sectionFrameClass}>
         <Experience />
       </section>
       {/* seccion Contact */}
       <section
         id='contact'
-        className='page-section snap-start my-4 md:my-0 min-h-screen px-6 md:px-12 lg:px-20 flex items-center justify-center'
+        className={`${sectionFrameClass} px-6 md:px-12 lg:px-20 flex items-center justify-center`}
       >
         <div className='text-center space-y-4'>
           <h3 className='text-2xl md:text-3xl font-semibold'>
