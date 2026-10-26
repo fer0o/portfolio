@@ -7,6 +7,7 @@ export interface CoreSkill {
   name: string
   level: LocalizedText
   years: string
+  certificateId?: string
 }
 
 export interface SkillDomain {

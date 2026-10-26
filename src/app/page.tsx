@@ -5,6 +5,7 @@ import { useGlobalContext } from '@/context/GlobalContext'
 import About from '@/Components/About'
 import Experience from '@/Components/Experience'
 import Skills from '@/Components/Skills'
+import Certificates from '@/Components/Certificates'
 import Contact from '@/Components/Contact'
 import Footer from '@/Components/Footer'
 
@@ -41,6 +42,7 @@ export default function Home() {
       <section className='page-section'>
         <Skills />
       </section>
+      <Certificates />
       {/* seccion Contact */}
       <section
         id='contact'

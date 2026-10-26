@@ -121,6 +121,12 @@ const Hero: React.FC = () => {
         >
           {viewCvLabel}
         </a>
+        <a
+          href='#education'
+          className='inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500'
+        >
+          {language === 'es' ? 'Formación y certificados' : 'Education & certificates'}
+        </a>
       </div>
 
       <div className='flex items-center justify-center h-full md:order-2 order-1'>

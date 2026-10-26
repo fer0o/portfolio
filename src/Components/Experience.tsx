@@ -28,18 +28,14 @@ const Experience: React.FC = () => {
   const title = language === 'es' ? 'Experiencia' : 'Experience'
   const subtitle =
     language === 'es'
-      ? 'Vista laboral y de proyectos/cursos'
-      : 'Work and projects/courses view'
+      ? 'Experiencia laboral y proyectos'
+      : 'Work experience and projects'
   const workLabel = language === 'es' ? 'Laboral' : 'Work'
   const projectsLabel = language === 'es' ? 'Proyectos' : 'Projects'
   const seeMoreLabel = language === 'es' ? 'Ver mas detalles' : 'See more details'
   const closeLabel = language === 'es' ? 'Cerrar' : 'Close'
   const backLabel = language === 'es' ? 'Volver al resumen' : 'Back to summary'
   const repoLabel = language === 'es' ? 'Ver repositorio en GitHub' : 'View repository on GitHub'
-  const certificateLabel =
-    language === 'es' ? 'Preview del certificado' : 'Certificate preview'
-  const certificateSectionLabel =
-    language === 'es' ? 'Certificado' : 'Certificate'
   const prevLabel = language === 'es' ? 'Anterior' : 'Previous'
   const nextLabel = language === 'es' ? 'Siguiente' : 'Next'
   const viewCvLabel = language === 'es' ? 'Ver CV' : 'View CV'
@@ -340,46 +336,6 @@ const Experience: React.FC = () => {
                   </a>
                 </div>
               )}
-
-              {selectedItem.certificateThumbUrl &&
-                selectedItem.certificatePreviewUrl && (
-                  <div
-                    className={`rounded-lg border p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 ${
-                      darkMode ? 'border-gray-600 bg-black/30' : 'border-gray-200 bg-gray-50'
-                    }`}
-                  >
-                    <div className='flex items-center gap-3'>
-                      <div
-                        className={`h-12 w-12 rounded-md border overflow-hidden flex items-center justify-center ${
-                          darkMode
-                            ? 'border-gray-600 bg-white/90'
-                            : 'border-gray-300 bg-white'
-                        }`}
-                      >
-                        <Image
-                          src={selectedItem.certificateThumbUrl}
-                          alt={certificateSectionLabel}
-                          width={48}
-                          height={48}
-                          className='h-full w-full object-contain p-1'
-                        />
-                      </div>
-                      <span className='text-sm font-semibold'>
-                        {certificateSectionLabel}
-                      </span>
-                    </div>
-                    <a
-                      href={selectedItem.certificatePreviewUrl}
-                      target='_blank'
-                      rel='noreferrer'
-                      className={getButtonClassName(darkMode, {
-                        size: 'sm'
-                      })}
-                    >
-                      {certificateLabel}
-                    </a>
-                  </div>
-                )}
             </div>
           </div>
         </div>

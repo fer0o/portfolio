@@ -133,63 +133,6 @@ export const experienceMockData: ExperienceItem[] = [
     repoUrl: 'https://github.com/fer0o'
   },
   {
-    id: 'course-react',
-    view: 'projects',
-    title: {
-      es: 'Curso Avanzado de React',
-      en: 'Advanced React Course'
-    },
-    subtitle: {
-      es: 'Curso completado',
-      en: 'Completed course'
-    },
-    period: {
-      es: '2025',
-      en: '2025'
-    },
-    summary: {
-      es: 'Profundizacion en hooks, arquitectura de componentes y manejo de estado.',
-      en: 'Deep dive into hooks, component architecture, and state management.'
-    },
-    details: {
-      es: 'Aplicacion de patrones para componentes escalables, optimizacion de renderizado y organizacion de proyectos frontend para mantenimiento a largo plazo.',
-      en: 'Applied patterns for scalable components, render optimizations, and frontend project organization for long-term maintainability.'
-    },
-    stack: ['React', 'Hooks', 'State Management'],
-    imageUrl: '/file.svg',
-    repoUrl: 'https://github.com/fer0o',
-    certificateThumbUrl: '/file.svg',
-    certificatePreviewUrl: '/file.svg'
-  },
-  {
-    id: 'course-backend',
-    view: 'projects',
-    title: {
-      es: 'Curso de Backend con FastAPI',
-      en: 'Backend Course with FastAPI'
-    },
-    subtitle: {
-      es: 'Curso en progreso',
-      en: 'Course in progress'
-    },
-    period: {
-      es: '2026',
-      en: '2026'
-    },
-    summary: {
-      es: 'Aprendizaje de APIs REST, validaciones y estructuras de servicios backend.',
-      en: 'Learning REST APIs, validation, and backend service structure.'
-    },
-    details: {
-      es: 'Construccion de endpoints, modelado de datos y buenas practicas para conectar frontend con backend de forma robusta.',
-      en: 'Building endpoints, data models, and good practices to connect frontend and backend in a robust way.'
-    },
-    stack: ['FastAPI', 'Python', 'REST APIs'],
-    imageUrl: '/file.svg',
-    certificateThumbUrl: '/file.svg',
-    certificatePreviewUrl: '/file.svg'
-  },
-  {
     id: 'project-dashboard',
     view: 'projects',
     title: {
@@ -242,61 +185,5 @@ export const experienceMockData: ExperienceItem[] = [
     stack: ['Next.js', 'React', 'State Management'],
     imageUrl: '/next.svg',
     repoUrl: 'https://github.com/fer0o'
-  },
-  {
-    id: 'course-nextjs',
-    view: 'projects',
-    title: {
-      es: 'Curso Completo de Next.js',
-      en: 'Complete Next.js Course'
-    },
-    subtitle: {
-      es: 'Curso completado',
-      en: 'Completed course'
-    },
-    period: {
-      es: '2025',
-      en: '2025'
-    },
-    summary: {
-      es: 'Aprendizaje de App Router, rutas dinamicas y optimizacion de imagenes.',
-      en: 'Learned App Router, dynamic routes, and image optimization.'
-    },
-    details: {
-      es: 'Practique patrones para estructurar aplicaciones escalables con renderizado hibrido y componentes reutilizables.',
-      en: 'Practiced scalable app patterns with hybrid rendering and reusable components.'
-    },
-    stack: ['Next.js', 'Routing', 'SSR/SSG'],
-    imageUrl: '/next.svg',
-    certificateThumbUrl: '/file.svg',
-    certificatePreviewUrl: '/file.svg'
-  },
-  {
-    id: 'course-testing',
-    view: 'projects',
-    title: {
-      es: 'Testing en Frontend',
-      en: 'Frontend Testing'
-    },
-    subtitle: {
-      es: 'Curso completado',
-      en: 'Completed course'
-    },
-    period: {
-      es: '2024',
-      en: '2024'
-    },
-    summary: {
-      es: 'Fundamentos de pruebas unitarias y de integracion para componentes.',
-      en: 'Fundamentals of unit and integration testing for UI components.'
-    },
-    details: {
-      es: 'Aprendi a disenar casos de prueba utiles para detectar regresiones y mejorar confianza en despliegues.',
-      en: 'Learned how to design useful test cases to detect regressions and increase deployment confidence.'
-    },
-    stack: ['Testing', 'React', 'Quality'],
-    imageUrl: '/file.svg',
-    certificateThumbUrl: '/file.svg',
-    certificatePreviewUrl: '/file.svg'
   }
 ]

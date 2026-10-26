@@ -15,6 +15,4 @@ export interface ExperienceItem {
   stack: string[]
   imageUrl?: string
   repoUrl?: string
-  certificateThumbUrl?: string
-  certificatePreviewUrl?: string
 }

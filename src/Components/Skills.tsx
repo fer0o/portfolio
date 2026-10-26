@@ -45,6 +45,14 @@ const Skills: React.FC = () => {
                 <p className={darkMode ? 'text-gray-300 text-sm mt-1' : 'text-gray-700 text-sm mt-1'}>
                   {skill.years}
                 </p>
+                {skill.certificateId && (
+                  <a
+                    href={`#certificate-${skill.certificateId}`}
+                    className='mt-2 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4'
+                  >
+                    {language === 'es' ? 'Ver formación' : 'View education'}
+                  </a>
+                )}
               </article>
             ))}
           </div>
@@ -104,8 +112,8 @@ const Skills: React.FC = () => {
                 </div>
                 <a
                   href={item.href}
-                  target='_blank'
-                  rel='noreferrer'
+                  target={item.href.startsWith('#') ? undefined : '_blank'}
+                  rel={item.href.startsWith('#') ? undefined : 'noreferrer'}
                   className={getButtonClassName(darkMode, { size: 'sm' })}
                 >
                   {item.cta[language]}

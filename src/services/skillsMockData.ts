@@ -1,4 +1,7 @@
 import { SkillsSectionContent } from '@/models/skills'
+import { certificatesData } from '@/services/certificatesData'
+
+const reactCertificate = certificatesData.find(item => item.id === 'react-js')!
 
 export const skillsMockData: SkillsSectionContent = {
   title: {
@@ -14,15 +17,16 @@ export const skillsMockData: SkillsSectionContent = {
     en: 'Skills by Domain'
   },
   evidenceTitle: {
-    es: 'Donde lo use',
-    en: 'Where I used it'
+    es: 'Proyectos y formación',
+    en: 'Projects and education'
   },
   core: [
     {
       id: 'react',
       name: 'React',
       level: { es: 'Avanzado', en: 'Advanced' },
-      years: '3+ years'
+      years: '3+ years',
+      certificateId: reactCertificate.id
     },
     {
       id: 'next',
@@ -105,11 +109,11 @@ export const skillsMockData: SkillsSectionContent = {
       href: 'https://github.com/fer0o'
     },
     {
-      id: 'next-course',
-      title: { es: 'Curso Completo de Next.js', en: 'Complete Next.js Course' },
-      stack: ['App Router', 'SSR/SSG', 'Routing'],
+      id: reactCertificate.id,
+      title: reactCertificate.title,
+      stack: ['React', reactCertificate.issuer],
       cta: { es: 'Ver certificado', en: 'View certificate' },
-      href: '/file.svg'
+      href: `#certificate-${reactCertificate.id}`
     }
   ]
 }

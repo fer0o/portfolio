@@ -4,9 +4,9 @@ export const heroTextMockData: HeroTextData = {
     greeting: 'Hola Soy Fernando Medellin',
     typewriterText: [
       'Diseñador Web',
-      'Trabajando para convertirme en Fullstack',
+      'Formación en Frontend y Backend',
       'Come, Duerme, Programa, Repite!',
-      'Aprendiendo React'
+      'Creando interfaces con React'
     ],
     buttons: ['Experiencia', 'Proyectos', 'Sobre mí', 'Habilidades']
   },
@@ -14,9 +14,9 @@ export const heroTextMockData: HeroTextData = {
     greeting: 'Hi, I’m Fernando Medellin',
     typewriterText: [
       'Web Designer',
-      'Working to become Fullstack',
+      'Trained in Frontend and Backend',
       'Eat, Sleep, Code, Repeat!',
-      'Learning React'
+      'Building interfaces with React'
     ],
     buttons: ['Experience', 'Projects', 'About Me', 'Skills']
   }
